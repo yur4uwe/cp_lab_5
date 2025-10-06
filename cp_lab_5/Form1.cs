@@ -19,32 +19,75 @@ namespace cp_lab_5
 
         private void solve_Click(object sender, EventArgs e)
         {
-            double a, b, eps;
-            int kmax;
+            Method method;
+            try
+            {
+                method = (Method)MethodBox.SelectedIndex;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            double a = 0, b = 1, eps = 1e-6;
+            int kmax = 100;
+            var tip = new ToolTip();
 
             try
             {
                 a = double.Parse(ABox.Text);
+            }
+            catch
+            {
+                tip.Show("Defaulted to 0", ABox, 0, -20, 2000);
+                a = 0;
+            }
+
+            try
+            {
                 b = double.Parse(BBox.Text);
+            }
+            catch
+            {
+                tip.Show("Defaulted to 1", BBox, 0, -20, 2000);
+                b = 1;
+            }
+
+            try
+            {
                 eps = double.Parse(EpsBox.Text);
-                kmax = int.Parse(KmaxBox.Text);
             }
-            catch (FormatException)
+            catch
             {
-                MessageBox.Show("Invalid input format");
-                return;
+                tip.Show("Defaulted to 1e-6", EpsBox, 0, -20, 2000);
+                eps = 1e-6;
             }
-            catch (OverflowException)
+
+            if (method == Method.Newton)
             {
-                MessageBox.Show("Input value is too large or too small");
-                return;
+                try
+                {
+                    kmax = int.Parse(KmaxBox.Text);
+                }
+                catch
+                {
+                    tip.Show("Defaulted to 100", KmaxBox, 0, -20, 2000);
+                    kmax = 100;
+                }
             }
 
             if (a >= b) (a, b) = (b, a);
 
-            if (eps <= 0 || kmax <= 0)
+            if (eps <= 0)
             {
-                MessageBox.Show("Epsilon and Kmax must be positive");
+                MessageBox.Show("Epsilon must be positive");
+                return;
+            }
+
+            if (method == Method.Newton && kmax <= 0)
+            {
+                MessageBox.Show("Max iterations must be positive");
                 return;
             }
 
@@ -64,17 +107,6 @@ namespace cp_lab_5
                 default:
                     MessageBox.Show("Select an equation");
                     return;
-            }
-
-            Method method;
-            try
-            {
-                method = (Method)MethodBox.SelectedIndex;
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
             }
 
             rf.FindRoot(a, b, method);
