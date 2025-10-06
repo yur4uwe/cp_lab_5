@@ -20,19 +20,18 @@ namespace cp_lab_5
         private void solve_Click(object sender, EventArgs e)
         {
             Method method;
-            try
+            if (BisectionRadio.Checked)
+                method = Method.Bisection;
+            else if (NewtonRadio.Checked)
+                method = Method.Newton;
+            else
             {
-                method = (Method)MethodBox.SelectedIndex;
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Select a method");
                 return;
             }
 
             double a = 0, b = 1, eps = 1e-6;
             int kmax = 100;
-            var tip = new ToolTip();
 
             try
             {
@@ -40,7 +39,7 @@ namespace cp_lab_5
             }
             catch
             {
-                tip.Show("Defaulted to 0", ABox, 0, -20, 2000);
+                ABox.Text = "0";
                 a = 0;
             }
 
@@ -50,7 +49,7 @@ namespace cp_lab_5
             }
             catch
             {
-                tip.Show("Defaulted to 1", BBox, 0, -20, 2000);
+                BBox.Text = "1";
                 b = 1;
             }
 
@@ -60,7 +59,7 @@ namespace cp_lab_5
             }
             catch
             {
-                tip.Show("Defaulted to 1e-6", EpsBox, 0, -20, 2000);
+                EpsBox.Text = "1e-6";
                 eps = 1e-6;
             }
 
@@ -72,7 +71,7 @@ namespace cp_lab_5
                 }
                 catch
                 {
-                    tip.Show("Defaulted to 100", KmaxBox, 0, -20, 2000);
+                    KmaxBox.Text = "100";
                     kmax = 100;
                 }
             }
@@ -93,20 +92,16 @@ namespace cp_lab_5
 
             RootFinder rf = new RootFinder(eps, kmax, msg => RootBox.Text = msg, msg => MessageBox.Show(msg), msg => IterBox.Text = msg);
 
-            switch (EquasionBox.SelectedIndex)
+            if (F1Radio.Checked)
+                rf.ChangeFunction(x => x * x - 4);
+            else if (F2Radio.Checked)
+                rf.ChangeFunction(x => 3 * x - 4 * Math.Log(x) - 5);
+            else if (F3Radio.Checked)
+                rf.ChangeFunction(x => Math.Exp(x) - 3 * x);
+            else
             {
-                case 0:
-                    rf.ChangeFunction(x => x * x - 4);
-                    break;
-                case 1:
-                    rf.ChangeFunction(x => 3 * x - 4 * Math.Log(x) - 5);
-                    break;
-                case 2:
-                    rf.ChangeFunction(x => Math.Exp(x) - 3 * x);
-                    break;
-                default:
-                    MessageBox.Show("Select an equation");
-                    return;
+                MessageBox.Show("Select an equation");
+                return;
             }
 
             rf.FindRoot(a, b, method);

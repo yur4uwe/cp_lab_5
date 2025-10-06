@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -38,8 +36,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.MethodBox = new System.Windows.Forms.ComboBox();
-            this.EquasionBox = new System.Windows.Forms.ComboBox();
             this.solve = new System.Windows.Forms.Button();
             this.clear = new System.Windows.Forms.Button();
             this.exit = new System.Windows.Forms.Button();
@@ -49,25 +45,16 @@
             this.RootBox = new System.Windows.Forms.TextBox();
             this.IterBox = new System.Windows.Forms.TextBox();
             this.KmaxBox = new System.Windows.Forms.TextBox();
+            this.BisectionRadio = new System.Windows.Forms.RadioButton();
+            this.NewtonRadio = new System.Windows.Forms.RadioButton();
+            this.F1Radio = new System.Windows.Forms.RadioButton();
+            this.F2Radio = new System.Windows.Forms.RadioButton();
+            this.F3Radio = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FuncChoice = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
+            this.FuncChoice.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(58, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Оберіть метод";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(58, 96);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Оберіть рівняння";
             // 
             // label3
             // 
@@ -140,29 +127,6 @@
             this.label10.Size = new System.Drawing.Size(44, 13);
             this.label10.TabIndex = 8;
             this.label10.Text = "Ітерації";
-            // 
-            // MethodBox
-            // 
-            this.MethodBox.FormattingEnabled = true;
-            this.MethodBox.Items.AddRange(new object[] {
-            "Ділення Навпіл",
-            "Ньютона"});
-            this.MethodBox.Location = new System.Drawing.Point(39, 59);
-            this.MethodBox.Name = "MethodBox";
-            this.MethodBox.Size = new System.Drawing.Size(121, 21);
-            this.MethodBox.TabIndex = 10;
-            // 
-            // EquasionBox
-            // 
-            this.EquasionBox.FormattingEnabled = true;
-            this.EquasionBox.Items.AddRange(new object[] {
-            "x^2 - 4 = 0",
-            "3x - 4log(x) -5 =0",
-            "e^x - 3x"});
-            this.EquasionBox.Location = new System.Drawing.Point(39, 112);
-            this.EquasionBox.Name = "EquasionBox";
-            this.EquasionBox.Size = new System.Drawing.Size(121, 21);
-            this.EquasionBox.TabIndex = 11;
             // 
             // solve
             // 
@@ -238,11 +202,91 @@
             this.KmaxBox.Size = new System.Drawing.Size(100, 20);
             this.KmaxBox.TabIndex = 18;
             // 
+            // BisectionRadio
+            // 
+            this.BisectionRadio.AutoSize = true;
+            this.BisectionRadio.Location = new System.Drawing.Point(15, 19);
+            this.BisectionRadio.Name = "BisectionRadio";
+            this.BisectionRadio.Size = new System.Drawing.Size(101, 17);
+            this.BisectionRadio.TabIndex = 21;
+            this.BisectionRadio.TabStop = true;
+            this.BisectionRadio.Text = "Ділення навпіл";
+            this.BisectionRadio.UseVisualStyleBackColor = true;
+            // 
+            // NewtonRadio
+            // 
+            this.NewtonRadio.AutoSize = true;
+            this.NewtonRadio.Location = new System.Drawing.Point(15, 42);
+            this.NewtonRadio.Name = "NewtonRadio";
+            this.NewtonRadio.Size = new System.Drawing.Size(70, 17);
+            this.NewtonRadio.TabIndex = 22;
+            this.NewtonRadio.TabStop = true;
+            this.NewtonRadio.Text = "Ньютона";
+            this.NewtonRadio.UseVisualStyleBackColor = true;
+            // 
+            // F1Radio
+            // 
+            this.F1Radio.AutoSize = true;
+            this.F1Radio.Location = new System.Drawing.Point(15, 19);
+            this.F1Radio.Name = "F1Radio";
+            this.F1Radio.Size = new System.Drawing.Size(75, 17);
+            this.F1Radio.TabIndex = 24;
+            this.F1Radio.TabStop = true;
+            this.F1Radio.Text = "x^2 - 4 = 0";
+            this.F1Radio.UseVisualStyleBackColor = true;
+            // 
+            // F2Radio
+            // 
+            this.F2Radio.AutoSize = true;
+            this.F2Radio.Location = new System.Drawing.Point(15, 42);
+            this.F2Radio.Name = "F2Radio";
+            this.F2Radio.Size = new System.Drawing.Size(100, 17);
+            this.F2Radio.TabIndex = 23;
+            this.F2Radio.TabStop = true;
+            this.F2Radio.Text = "3x - 4ln(x) -5 = 0";
+            this.F2Radio.UseVisualStyleBackColor = true;
+            // 
+            // F3Radio
+            // 
+            this.F3Radio.AutoSize = true;
+            this.F3Radio.Location = new System.Drawing.Point(15, 65);
+            this.F3Radio.Name = "F3Radio";
+            this.F3Radio.Size = new System.Drawing.Size(74, 17);
+            this.F3Radio.TabIndex = 25;
+            this.F3Radio.TabStop = true;
+            this.F3Radio.Text = "e^x-3x = 0";
+            this.F3Radio.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.BisectionRadio);
+            this.groupBox1.Controls.Add(this.NewtonRadio);
+            this.groupBox1.Location = new System.Drawing.Point(30, 43);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(128, 73);
+            this.groupBox1.TabIndex = 26;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Оберіть Метод";
+            // 
+            // FuncChoice
+            // 
+            this.FuncChoice.Controls.Add(this.F1Radio);
+            this.FuncChoice.Controls.Add(this.F2Radio);
+            this.FuncChoice.Controls.Add(this.F3Radio);
+            this.FuncChoice.Location = new System.Drawing.Point(30, 122);
+            this.FuncChoice.Name = "FuncChoice";
+            this.FuncChoice.Size = new System.Drawing.Size(128, 88);
+            this.FuncChoice.TabIndex = 27;
+            this.FuncChoice.TabStop = false;
+            this.FuncChoice.Text = "Оберіть Рівняння";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(545, 282);
+            this.Controls.Add(this.FuncChoice);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.RootBox);
             this.Controls.Add(this.IterBox);
             this.Controls.Add(this.KmaxBox);
@@ -252,8 +296,6 @@
             this.Controls.Add(this.exit);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.solve);
-            this.Controls.Add(this.EquasionBox);
-            this.Controls.Add(this.MethodBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label5);
@@ -262,19 +304,18 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Розв\'язання нелінійних рівнянь методами МДН та МН";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.FuncChoice.ResumeLayout(false);
+            this.FuncChoice.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -283,8 +324,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox MethodBox;
-        private System.Windows.Forms.ComboBox EquasionBox;
         private System.Windows.Forms.Button solve;
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.Button exit;
@@ -294,6 +333,13 @@
         private System.Windows.Forms.TextBox RootBox;
         private System.Windows.Forms.TextBox IterBox;
         private System.Windows.Forms.TextBox KmaxBox;
+        private System.Windows.Forms.RadioButton BisectionRadio;
+        private System.Windows.Forms.RadioButton NewtonRadio;
+        private System.Windows.Forms.RadioButton F1Radio;
+        private System.Windows.Forms.RadioButton F2Radio;
+        private System.Windows.Forms.RadioButton F3Radio;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox FuncChoice;
     }
 }
 
